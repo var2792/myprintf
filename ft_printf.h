@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+#include "libtemp/libtemp.h"
+
 int ft_printf(const char *orig, ...);
 char	*format_specifier(char **str, va_list *app, int *len);
 

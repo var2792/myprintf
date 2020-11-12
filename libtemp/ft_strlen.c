@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_findchr.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/12 16:49:47 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/12 16:49:49 by tarneld          ###   ########.fr       */
+/*   Created: 2020/10/28 12:54:26 by tarneld           #+#    #+#             */
+/*   Updated: 2020/10/28 12:54:43 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libtemp.h"
 
-int		ft_findchr(const char *st, char c)
+size_t		ft_strlen(const char *str)
 {
-	int		i;
+	unsigned long i;
 
 	i = 0;
-	if (!st)
-		return (-1);
-	while (c != st[i])
-	{
-		if (st[i] == '\0')
-			break ;
+	while (str[i] != '\0')
 		i++;
-	}
-	if (st[i] == '\0' && c != '\0')
-		return (-1);
-	return (1);
+	return (i);
 }

@@ -29,6 +29,6 @@ typedef struct	s_format
 	int		success; //right or not?
 }				t_format;
 
-char	*specifier(char **str, va_list *app, int *len);
+char	*specifier(char **str, va_list *app, int *len, t_format *format);
 
 #endif

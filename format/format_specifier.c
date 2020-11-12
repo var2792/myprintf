@@ -17,7 +17,7 @@ void	null_format(t_format *format)
 	format->flags = 0;
 	format->width = NULL;
 	format->precision = NULL;
-	format->length = NULL;
+	//format->length = NULL;
 	format->specifier = 0;
 	format->result = NULL;
 	format->print_len = 0;

@@ -23,20 +23,19 @@ CC			= gcc
 .c.o:		${HEADER}
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-RM			= @rm -rf
+RM			= rm -rf
 
 NAME		= libftprintf.a
 
-clean:
-			${RM} ${OBJS} *.gch
 
 ${NAME}:	${OBJS}
-			@ar rc ${NAME} ${OBJS}
-			@ranlib ${NAME}
-#clean
+			ar rc ${NAME} ${OBJS}
+			ranlib ${NAME}
 
 all:		 ${NAME}
 
+clean:
+			${RM} ${OBJS} *.gch
 fclean:		clean
 			${RM} ${NAME} a.out
 

@@ -10,41 +10,35 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c \
-			format/format_specifier.c \
-			format/specifier.c \
-			libtemp/ft_strjoin.c
-			libtemp/ft_findchr.c
+SRCS		= ft_printf.c format/format_specifier.c format/specifier.c format/format_out.c format/flags.c format/width.c format/result.c format/precision.c libtemp/ft_strjoin.c libtemp/ft_findchr.c libtemp/ft_strlen.c libtemp/ft_atoi.c libtemp/ft_itoa.c
 
 OBJS		=	${SRCS:.c=.o}
 
-HEADER		= -I ft_printf.h \
-			format/format_specifier.c.h \
-			libtemp/libtemp.h
+HEADER		= -I ft_printf.h format/format_specifier.c.h libtemp/libtemp.h
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Werror -Wextra
 
 CC			= gcc
 
 .c.o:		${HEADER}
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-RM			= rm -rf
+RM			= @rm -rf
 
 NAME		= libftprintf.a
-
-${NAME}:	${OBJS}
-			ar rc ${NAME} ${OBJS}
-			ranlib ${NAME}
-
-all:		 ${NAME}
-
 
 clean:
 			${RM} ${OBJS} *.gch
 
+${NAME}:	${OBJS}
+			@ar rc ${NAME} ${OBJS}
+			@ranlib ${NAME}
+#clean
+
+all:		 ${NAME}
+
 fclean:		clean
-			${RM} ${NAME}
+			${RM} ${NAME} a.out
 
 re:			fclean all
 

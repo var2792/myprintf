@@ -61,6 +61,6 @@ char	*format_specifier(char **str, va_list *app, int *len)
 	if (ft_findchr("cspdiuxX%", **str) > 0 &&
 			(format.success || format.success == -1))
 		format.success = f_specifier(str, app, &format);
-	print_format(&format);
+	//print_format(&format);
 	return (result_char(len, &format));
 }

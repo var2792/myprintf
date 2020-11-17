@@ -23,7 +23,7 @@ typedef struct	s_format
 	unsigned int	wid_pre;
 	char			precision;
 	char			specifier;
-	char			*result;
+	char			*result; //unsigned - void ??<-----
 	long int		print_len;
 	char			*help;
 	int				success;

@@ -14,8 +14,9 @@
 
 int		f_specifier(char **str, va_list *app, t_format *format)
 {
-	char	*temp;
+	char			*temp;
 	char	*p;
+	int		up;
 
 	format->specifier = **str;
 	if (format->print_len == -1)
@@ -23,13 +24,12 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	if (format->specifier == 'c')
 	{
 		temp = NULL;
-		p = malloc(sizeof(char) * 2);
-		p[0] = va_arg(*app, int);
-		p[1] = '\0';
-		temp = ft_strjoin_free(temp, p, 1);
+		up = va_arg(*app, int);
+		//printf("Here %i\n", up);
+		temp = ft_strjoin_one(temp, up, 1);
+		//printf("Here %s\n", temp);
 		format->help = ft_strjoin_free(format->help, temp, ft_strlen(temp));
 		free(temp);
-		free(p);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
 		return (1);
@@ -98,7 +98,6 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	}
 	if (format->specifier == '%')
 	{
-		printf("I'm here!")
 		temp = NULL;
 		p = malloc(sizeof(char) * 2);
 		p[0] = '%';

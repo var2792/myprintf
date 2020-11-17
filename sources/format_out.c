@@ -21,8 +21,10 @@ int		out_zero(t_format *format)
 	i = 0;
 	temp = NULL;
 	size = (format->flags == '0') ? format->wid_fls : format->wid_pre;
-	if (format->print_len >= size || format->specifier == 'c' || format->specifier == 's')
+	if (format->print_len >= size)
 		return (0);
+	if (format->specifier == 'c' || format->specifier == 's')
+		return (-1);
 	while (i + format->print_len < size)
 	{
 		temp = ft_strjoin_free(temp, "0", 1);

@@ -23,7 +23,7 @@ char	*result_char(int *len, t_format *format)
 			fl = out_zero(format);
 		if (format->flags == '-')
 			fl = out_minus(format);
-		if (!format->flags && !format->precision)
+		if ((!format->flags && !format->precision) || fl == -1)
 			fl = out_without(format);
 		if (fl == 0)
 			format->result = format->help;

@@ -10,11 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c sources/*.c #sources/format_specifier.c sources/specifier.c sources/format_out.c sources/flags.c sources/width.c sources/result.c sources/precision.c sources/ft_strjoin.c sources/ft_findchr.c sources/ft_strlen.c sources/ft_atoi.c sources/ft_itoa.c
+SRCS		= ft_printf.c sources/*.c  #sources/format_specifier.c sources/specifier.c sources/format_out.c sources/flags.c sources/width.c sources/result.c sources/precision.c sources/ft_strjoin.c sources/ft_findchr.c sources/ft_strlen.c sources/ft_atoi.c sources/ft_itoa.c
 
 OBJS		=	${SRCS:.c=.o}
 
-HEADER		= -I ft_printf.h includes/*.h #includes/format_specifier.c.h includes/libtemp.h
+HEADER		= -I ft_printf.h includes/*.h  #includes/format_specifier.c.h includes/libtemp.h
 
 CFLAGS		= -Wall -Werror -Wextra
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 01:10:46 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 01:10:46 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/17 13:20:49 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/17 13:31:19 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		out_zero(t_format *format)
 {
 	long int	size;
-	int 		i;
+	int			i;
 	char		*temp;
 
 	i = 0;
@@ -39,7 +39,7 @@ int		out_zero(t_format *format)
 int		out_minus_point(t_format *format)
 {
 	long int	size;
-	int 		i;
+	int			i;
 	char		*temp;
 
 	i = 0;
@@ -61,7 +61,7 @@ int		out_minus_point(t_format *format)
 int		out_minus(t_format *format)
 {
 	long int	size;
-	int 		i;
+	int			i;
 	char		*temp;
 
 	i = 0;
@@ -85,7 +85,7 @@ int		out_minus(t_format *format)
 int		out_without(t_format *format)
 {
 	long int	size;
-	int 		i;
+	int			i;
 	char		*temp;
 
 	i = 0;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 18:29:21 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/11 18:29:24 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/17 13:14:10 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/17 13:16:06 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-#include "includes/libtemp.h"
-#include "includes/format_specifier.h"
+# include "includes/libtemp.h"
+# include "includes/format_specifier.h"
 
-int     ft_printf(const char *orig, ...);
+int		ft_printf(const char *orig, ...);
 
 #endif

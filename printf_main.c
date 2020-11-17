@@ -5,7 +5,7 @@ int main(void)
 {
 	char *p = "asfghk";
 
-	ft_printf("Print it my c = |%c|\n", 'c');
+	/*ft_printf("Print it my c = |%c|\n", 'c');
 	printf("Print it re c = |%c|\n", 'c');
 	ft_printf("Print it my s = |%s|\n", "sss");
 	printf("Print it re s = |%s|\n", "sss");
@@ -42,7 +42,10 @@ int main(void)
 	ft_printf("\nPrint it my .*  =  |%.*d|\n", 15, 1234567890);
 	printf("Print it re .*  =  |%.*d|\n", 15, 1234567890);
 	ft_printf("Print it my  -*  =  |%-*d|\n", 15, 1234567890);
-	printf("Print it re  -*  =  |%-*d|\n", 15, 1234567890);
+	printf("Print it re  -*  =  |%-*d|\n", 15, 1234567890);*/
+	
+	ft_printf("Print it my %s = |%&|\n", "%%");
+	printf("Print it re %s = |%%|\n", "%%");
 }
 /*
 0 & num - minim lenght with null, if longer - just num

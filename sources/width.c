@@ -5,51 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 11:39:08 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/16 11:39:08 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/17 13:21:32 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/17 13:57:09 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-int		f_width(char **str, va_list *app, t_format *format, char flag)
-{//1234567890*
+static int	width_star(char **str, va_list *app, t_format *format, char flag)
+{
 	int len;
 
-    if (format->print_len == -1)
-	    format->print_len = 0;
+	len = va_arg(*app, unsigned int);
+	if (flag == 'p')
+		format->wid_pre = len;
+	else if (flag == 'f')
+		format->wid_fls = len;
+	else
+		return (0);
+	(*str)++;
+	return (1);
+}
+
+int			f_width(char **str, va_list *app, t_format *format, char flag)
+{
+	if (format->print_len == -1)
+		format->print_len = 0;
 	if (**str == '*')
-	{
-		len = va_arg(*app, unsigned int);
-		if (flag == 'p')
-			format->wid_pre = len;
-		if (flag == 'f')
-			format->wid_fls = len;
-		(*str)++;
-		return(1);
-	}
+		return (width_star(str, app, format, flag));
 	while (**str > 47 && **str < 58)
-    {
-        format->width = ft_strjoin_free(format->width, *str, 1);
+	{
+		format->width = ft_strjoin_free(format->width, *str, 1);
 		(*str)++;
-    }
-    if (format->width !=  NULL && flag == 'p')
-	{
-		format->wid_pre = ft_atoi(format->width);
-		//format->help = ft_strjoin_free(format->help, format->width, ft_strlen(format->width));
-		//format->print_len = ft_strlen(format->help);
-		free(format->width);
-		format->width = NULL;
-		return(1);
 	}
-    if (format->width !=  NULL && flag == 'f')
+	if (format->width != NULL)
 	{
-		format->wid_fls = ft_atoi(format->width);
-		//format->help = ft_strjoin_free(format->help, format->width, ft_strlen(format->width));
-		//format->print_len = ft_strlen(format->help);
+		if (flag == 'p')
+			format->wid_pre = ft_atoi(format->width);
+		if (flag == 'f')
+			format->wid_fls = ft_atoi(format->width);
 		free(format->width);
 		format->width = NULL;
-		return(1);
+		return (1);
 	}
 	return (0);
 }

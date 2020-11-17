@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   precision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 18:29:21 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/11 18:29:24 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/16 11:38:57 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/16 11:38:57 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/format_specifier.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-
-#include "includes/libtemp.h"
-#include "includes/format_specifier.h"
-
-int     ft_printf(const char *orig, ...);
-
-#endif
+int		f_precision(char **str, t_format *format)
+{//.
+	format->precision = **str;
+    if (format->print_len == -1)
+	    format->print_len = 0;
+	if (format->precision ==  '.')
+	{
+		//format->help = ft_strjoin_free(format->help, "point ", 6);
+		//format->print_len = ft_strlen(format->help);
+		(*str)++;
+		return(1);
+	}
+	return (0);
+}

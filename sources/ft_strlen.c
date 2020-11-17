@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/11 18:29:21 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/11 18:29:24 by tarneld          ###   ########.fr       */
+/*   Created: 2020/10/28 12:54:26 by tarneld           #+#    #+#             */
+/*   Updated: 2020/10/28 12:54:43 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libtemp.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+size_t		ft_strlen(const char *str)
+{
+	unsigned long i;
 
-#include "includes/libtemp.h"
-#include "includes/format_specifier.h"
-
-int     ft_printf(const char *orig, ...);
-
-#endif
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

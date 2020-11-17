@@ -1,6 +1,5 @@
 
 #include "ft_printf.h"
-#include "format/format_specifier.h"
 
 int main(void)
 {

@@ -6,12 +6,13 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:10 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/18 12:48:06 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/18 23:28:47 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libtemp.h"
 
+/*
 void	*ft_strjoin_one(void *s1, int s2, int len)
 {
 	int				i;
@@ -32,7 +33,6 @@ void	*ft_strjoin_one(void *s1, int s2, int len)
 	res[i] = '\0';
 	return (res);
 }
-
 void	*ft_strjoin_free(void *s1, void *s2, int len)
 {
 	int				i;
@@ -61,7 +61,7 @@ void	*ft_strjoin_free(void *s1, void *s2, int len)
 	res[i] = '\0';
 	return (res);
 }
-
+*/
 void	*ft_strjoin_lens(void *s1, void *s2, int len1, int len2)
 {
 	int				i;
@@ -74,7 +74,6 @@ void	*ft_strjoin_lens(void *s1, void *s2, int len1, int len2)
 	u2 = (unsigned char*)s2;
 	if (!u1 && !u2)
 		return (((unsigned char*)NULL));
-
 	if (!(res = malloc(sizeof(char) * (len1 + len2 + 1))))
 		return (((unsigned char*)NULL));
 	i = 0;

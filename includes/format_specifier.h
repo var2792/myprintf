@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:37 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/18 12:47:56 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/18 20:57:40 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int				f_specifier(char **str, va_list *app, t_format *format);
 void			*result_char(int *len, t_format *format);
 int				out_zero(t_format *format);
 int				out_minus(t_format *format);
-int				out_minus_point(t_format *format);
 int				out_without(t_format *format);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:53 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 22:16:13 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/19 00:51:57 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	null_format(t_format *format)
 	format->result = NULL;
 	format->print_len = -1;
 	format->help = NULL;
-	format->success = -1;
+	format->success = 1;
 }
 
 void	print_format(t_format *format)
@@ -46,20 +46,17 @@ void	*format_specifier(char **str, va_list *app, int *len)
 
 	(*str)++;
 	null_format(&format);
-	if (ft_findchr("-0", **str) > 0 && (format.success || format.success == -1))
+	if (ft_findchr("-0", **str) > 0 && format.success)
 		format.success = f_flags(str, &format);
-	if (ft_findchr("1234567890*", **str) > 0 &&
-			(format.success || format.success == -1))
+	if (ft_findchr("1234567890*", **str) > 0 && format.success)
 		format.success = f_width(str, app, &format, 'f');
-	if (ft_findchr(".", **str) > 0 &&
-			(format.success || format.success == -1) &&
+	if (ft_findchr(".", **str) > 0 && format.success &&
 			(format.flags == 0 || format.flags == '-'))
 		format.success = f_precision(str, &format);
 	if (ft_findchr("1234567890*", **str) > 0 &&
 			(format.success || format.success == -1))
 		format.success = f_width(str, app, &format, 'p');
-	if (ft_findchr("cspdiuxX%", **str) > 0 &&
-			(format.success || format.success == -1))
+	if (ft_findchr("cspdiuxX%", **str) > 0 && format.success)
 		format.success = f_specifier(str, app, &format);
 	//print_format(&format);
 	return (result_char(len, &format));

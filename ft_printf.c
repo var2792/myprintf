@@ -6,28 +6,31 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:11:39 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:13:51 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/18 12:48:11 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_devide(char **res, char **str, va_list *app, int *len)
+void	format_devide(unsigned char **res, char **str, va_list *app, int *len)
 {
-	char	*temp;
+	unsigned char	*temp;
+	int				len_t;
 
-	temp = format_specifier(str, app, len);
+	temp = (unsigned char*)format_specifier(str, app, len);
+	len_t = (temp[0] == 0) ? 1 : ft_strlen(temp);
 	if (*len > 0)
-		*res = ft_strjoin_free(*res, temp, ft_strlen(temp));
+		*res = (unsigned char*)ft_strjoin_lens(*res, temp, *len, len_t);
+	*len = (temp[0] == 0) ? *len + 1 : *len;
 	free(temp);
 }
 
 int		ft_printf(const char *orig, ...)
 {
-	va_list	ap;
-	char	*str;
-	char	*res;
-	int		len;
+	va_list			ap;
+	char			*str;
+	unsigned char	*res;
+	int				len;
 
 	len = 0;
 	res = NULL;
@@ -39,7 +42,7 @@ int		ft_printf(const char *orig, ...)
 			format_devide(&res, &str, &ap, &len);
 		else
 		{
-			res = ft_strjoin_free(res, str, 1);
+			res = (unsigned char*)ft_strjoin_lens(res, str, len, 1);
 			str++;
 			len++;
 		}

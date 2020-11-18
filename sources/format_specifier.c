@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:53 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:34:48 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/17 22:16:13 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_format(t_format *format)
 	printf("success |%i|\n\n", format->success);
 }
 
-char	*format_specifier(char **str, va_list *app, int *len)
+void	*format_specifier(char **str, va_list *app, int *len)
 {
 	t_format	format;
 

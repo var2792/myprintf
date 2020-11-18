@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:32 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:57:09 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/17 22:14:36 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			f_width(char **str, va_list *app, t_format *format, char flag)
 		return (width_star(str, app, format, flag));
 	while (**str > 47 && **str < 58)
 	{
-		format->width = ft_strjoin_free(format->width, *str, 1);
+		format->width = (char*)ft_strjoin_free(format->width, *str, 1);
 		(*str)++;
 	}
 	if (format->width != NULL)

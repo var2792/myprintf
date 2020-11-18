@@ -6,18 +6,18 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:10 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:42:06 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/18 12:48:06 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libtemp.h"
 
-char	*ft_strjoin_one(void *s1, int s2, int len)
+void	*ft_strjoin_one(void *s1, int s2, int len)
 {
-	int		i;
-	int		j;
+	int				i;
+	int				j;
 	unsigned char	*res;
- 
+
 	if (!(res = malloc(sizeof(char) * (ft_strlen((char*)s1) + len + 1))))
 		return (NULL);
 	i = 0;
@@ -30,30 +30,64 @@ char	*ft_strjoin_one(void *s1, int s2, int len)
 	}
 	res[i++] = (unsigned char)s2;
 	res[i] = '\0';
-	return ((char*)res);
+	return (res);
 }
 
-char	*ft_strjoin_free(char *s1, char const *s2, int len)
+void	*ft_strjoin_free(void *s1, void *s2, int len)
 {
-	int		i;
-	int		j;
-	char	*res;
+	int				i;
+	int				j;
+	unsigned char	*res;
+	unsigned char	*u1;
+	unsigned char	*u2;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (!(res = malloc(sizeof(char) * (ft_strlen(s1) + len + 1))))
-		return (NULL);
+	u1 = (unsigned char*)s1;
+	u2 = (unsigned char*)s2;
+	if (!u1 && !u2)
+		return (((unsigned char*)NULL));
+	if (!(res = malloc(sizeof(char) * (ft_strlen(u1) + len + 1))))
+		return (((unsigned char*)NULL));
 	i = 0;
 	j = 0;
-	if (!(s1 == NULL))
+	if (!(u1 == NULL))
 	{
-		while (s1[i])
-			res[i++] = s1[j++];
-		free(s1);
+		while (u1[i])
+			res[i++] = u1[j++];
+		free(u1);
 	}
 	j = 0;
-	while (s2[j] && j < len)
-		res[i++] = s2[j++];
+	while (u2[j] && j < len)
+		res[i++] = u2[j++];
+	res[i] = '\0';
+	return (res);
+}
+
+void	*ft_strjoin_lens(void *s1, void *s2, int len1, int len2)
+{
+	int				i;
+	int				j;
+	unsigned char	*res;
+	unsigned char	*u1;
+	unsigned char	*u2;
+
+	u1 = (unsigned char*)s1;
+	u2 = (unsigned char*)s2;
+	if (!u1 && !u2)
+		return (((unsigned char*)NULL));
+
+	if (!(res = malloc(sizeof(char) * (len1 + len2 + 1))))
+		return (((unsigned char*)NULL));
+	i = 0;
+	j = 0;
+	if (!(u1 == NULL))
+	{
+		while (i < len1)
+			res[i++] = u1[j++];
+		free(u1);
+	}
+	j = 0;
+	while (j < len2)
+		res[i++] = u2[j++];
 	res[i] = '\0';
 	return (res);
 }

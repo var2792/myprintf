@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:49 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:31:19 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/17 22:01:51 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		out_zero(t_format *format)
 		temp = ft_strjoin_free(temp, "0", 1);
 		i++;
 	}
-	format->result = ft_strjoin_free(temp, format->help, format->print_len);
+	format->result = (unsigned char*)ft_strjoin_free(temp, format->help, format->print_len);
 	free(format->help);
 	format->print_len += i;
 	return (1);
@@ -52,7 +52,7 @@ int		out_minus_point(t_format *format)
 		temp = ft_strjoin_free(temp, " ", 1);
 		i++;
 	}
-	format->result = ft_strjoin_free(format->result, temp, format->print_len);
+	format->result = (unsigned char*)ft_strjoin_free(format->result, temp, format->print_len);
 	free(temp);
 	format->print_len += i;
 	return (1);
@@ -76,7 +76,7 @@ int		out_minus(t_format *format)
 		temp = ft_strjoin_free(temp, " ", 1);
 		i++;
 	}
-	format->result = ft_strjoin_free(format->help, temp, i);
+	format->result = (unsigned char*)ft_strjoin_free(format->help, temp, i);
 	free(temp);
 	format->print_len += i;
 	return (1);
@@ -98,7 +98,7 @@ int		out_without(t_format *format)
 		temp = ft_strjoin_free(temp, " ", 1);
 		i++;
 	}
-	format->result = ft_strjoin_free(temp, format->help, format->print_len);
+	format->result = (unsigned char*)ft_strjoin_free(temp, format->help, format->print_len);
 	free(format->help);
 	format->print_len += i;
 	return (1);

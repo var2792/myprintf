@@ -43,16 +43,17 @@ int main(void)
 	printf("Print it re .*  =  |%.*d|\n", 15, 1234567890);
 	ft_printf("Print it my  -*  =  |%-*d|\n", 15, 1234567890);
 	printf("Print it re  -*  =  |%-*d|\n", 15, 1234567890);*/
-	
+
 	/*ft_printf("Print it my %s = |%%|\n", "%%");
 	printf("Print it re %s = |%%|\n", "%%");
 	ft_printf("Print it my %s = |%-5%|\n", "%-5%");
 	printf("Print it re %s = |%-5%|\n", "%-5%");
 	ft_printf("Print it my %s = |%05%|\n", "%05%");
 	printf("Print it re %s = |%05%|\n", "%05%");*/
-	
+
 	ft_printf("Print it my uni = |%c|\n", '\x00');
 	printf("Print it re uni = |%c|\n", '\x00');
+	//printf("%i %i\n", nm, nr);
 }
 /*
 0 & num - minim lenght with null, if longer - just num

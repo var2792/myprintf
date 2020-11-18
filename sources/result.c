@@ -6,13 +6,13 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:23 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:43:49 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/17 22:15:03 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-char	*result_char(int *len, t_format *format)
+void	*result_char(int *len, t_format *format)
 {
 	int fl;
 

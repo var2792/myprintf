@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:37 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:27:10 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/18 12:47:56 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ typedef struct	s_format
 	unsigned int	wid_pre;
 	char			precision;
 	char			specifier;
-	char			*result; //unsigned - void ??<-----
+	unsigned char	*result;
 	long int		print_len;
-	char			*help;
+	unsigned char	*help;
 	int				success;
 }				t_format;
 
-char			*format_specifier(char **str, va_list *app, int *len);
+void			*format_specifier(char **str, va_list *app, int *len);
 int				f_flags(char **str, t_format *format);
 int				f_precision(char **str, t_format *format);
 int				f_width(char **str, va_list *app, t_format *format, char flag);
 int				f_specifier(char **str, va_list *app, t_format *format);
-char			*result_char(int *len, t_format *format);
+void			*result_char(int *len, t_format *format);
 int				out_zero(t_format *format);
 int				out_minus(t_format *format);
 int				out_minus_point(t_format *format);

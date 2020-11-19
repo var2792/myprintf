@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_findchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:14:10 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:16:06 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/17 13:21:02 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/17 13:35:29 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libtemp.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+int		ft_findchr(const char *st, char c)
+{
+	int		i;
 
-# include "includes/libtemp.h"
-# include "includes/format_specifier.h"
-
-int		ft_printf(const char *orig, ...);
-
-#endif
+	i = 0;
+	if (!st)
+		return (-1);
+	while (c != st[i])
+	{
+		if (st[i] == '\0')
+			break ;
+		i++;
+	}
+	if (st[i] == '\0' && c != '\0')
+		return (-1);
+	return (1);
+}

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 12:45:35 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 02:35:51 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/17 13:21:06 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/17 13:41:36 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libtemp.h"
+#include "../includes/libtemp.h"
 
 static char	*res10(int i, int fl, int *convert)
 {
@@ -75,13 +75,24 @@ static char	*res16l(int i, int *convert)
 	return (res);
 }
 
+static char	*res_sort(int i, int fl, int *convert, char base)
+{
+	if (base == 'A')
+		return (res10(i, fl, convert));
+	if (base == 'X')
+		return (res16(i, convert));
+	if (base == 'x')
+		return (res16l(i, convert));
+	return (NULL);
+}
+
 char		*ft_itoa_base(long int value, char base)
 {
 	long long int	val;
-	int			i;
-	int			convert[512];
-	int			b;
-	int			fl;
+	int				i;
+	int				convert[512];
+	int				b;
+	int				fl;
 
 	val = value;
 	fl = 0;
@@ -99,11 +110,7 @@ char		*ft_itoa_base(long int value, char base)
 		val = val / b;
 	}
 	convert[i++] = val;
-	if (base == 'A')
-		return (res10(i, fl, convert));
-	if (base == 'X')
-		return (res16(i, convert));
-	if (base == 'x')
-		return (res16l(i, convert));
-	return(NULL);
+	if (base == 'A' || base == 'x' || base == 'X')
+		return (res_sort(i, fl, convert, base));
+	return (NULL);
 }

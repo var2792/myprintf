@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:44 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:29:59 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 14:15:35 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int		f_flags(char **str, t_format *format)
 	if (format->flags == '0')
 	{
 		(*str)++;
+		if (**str == '-')
+		{
+			format->flags = '-';
+			(*str)++;
+		}
 		return (1);
 	}
 	return (0);

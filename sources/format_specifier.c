@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:53 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/19 00:51:57 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 14:05:59 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	print_format(t_format *format)
 	printf("\n----------------------------\nflags |%c|\n", format->flags);
 	printf("precision |%c|\n", format->precision);
 	printf("width |%s|\n", format->width);
-	printf("wid_pre |%u|\n", format->wid_pre);
-	printf("wid_fls |%u|\n", format->wid_fls);
+	printf("wid_pre |%li|\n", format->wid_pre);
+	printf("wid_fls |%li|\n", format->wid_fls);
 	printf("specifier |%c|\n", format->specifier);
 	printf("result |%s|\n", format->result);
 	printf("plen |%li| =? %li\n", format->print_len, ft_strlen(format->help));

@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:20:49 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/19 00:50:24 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 13:57:27 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		out_str_zero(t_format *format)
 	unsigned char	*temp;
 
 	i = 0;
+	if (format->wid_pre < 0)
+		return (0);
 	temp = format->help + i;
 	while (i < format->wid_pre && temp[0] != 0)
 	{
@@ -45,10 +47,12 @@ int		out_zero(t_format *format)
 
 	i = 0;
 	temp = NULL;
+	if (ft_strlen(format->help) == 0)
+		return (0);
 	size = (format->flags == '0') ? format->wid_fls : format->wid_pre;
 	if (format->specifier == 's')
 		return (out_str_zero(format));
-	if (format->print_len >= size)
+	if (size < 0 || format->print_len >= size)
 		return (0);
 	if (format->specifier == 'c')
 		return (-1);
@@ -72,7 +76,7 @@ int		out_minus(t_format *format)
 	i = 0;
 	temp = NULL;
 	size = format->wid_fls;
-	if (format->print_len >= size)
+	if (size < 0 || format->print_len >= size)
 		return (0);
 	while (i + format->print_len < size)
 	{

@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:37 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/18 20:57:40 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 13:24:51 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef struct	s_format
 {
 	char			flags;
 	char			*width;
-	unsigned int	wid_fls;
-	unsigned int	wid_pre;
+	long int		wid_fls;
+	long int		wid_pre;
 	char			precision;
 	char			specifier;
 	unsigned char	*result;

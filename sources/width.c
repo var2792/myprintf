@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:32 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/18 17:24:57 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 13:30:36 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	width_star(char **str, va_list *app, t_format *format, char flag)
 	int len;
 
 	len = va_arg(*app, unsigned int);
+	if (len < 0)
+		len = -1;
 	if (flag == 'p')
 		format->wid_pre = len;
 	else if (flag == 'f')

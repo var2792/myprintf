@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:23 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/19 00:52:07 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 14:05:43 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	not_null(t_format *format, int fl, int *len)
 
 int	if_null(t_format *format)
 {
-	if (format->help == NULL)
+	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre >=0))
 	{
 		if (format->precision == '.' && format->wid_pre < 6)
 		{
@@ -55,13 +55,14 @@ void	*result_char(int *len, t_format *format)
 				fl = out_zero(format);
 			if (format->flags == '-')
 				fl = out_minus(format);
+		}
 			if ((!format->flags && format->wid_fls != 0) || fl == -1)
 				fl = out_without(format);
-		}
+		/*printf("fl is %i<---\n", fl);
+		printf("f->pl is %li<---\n", format->print_len);
+		printf("f->h |%s|<---\n", format->help);
+		printf("f->res |%s|<---\n", format->result);*/
 		not_null(format, fl, len);
-		//printf("*len is %i<---\n", *len);
-		//printf("f->h |%s|<---\n", format->help);
-		//printf("f->res |%s|<---\n", format->result);
 		return (format->result);
 	}
 	if (format->success == 2)

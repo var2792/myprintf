@@ -7,7 +7,7 @@ int main(void)
 	int nm = 0;
 	int nr = 0;
 
-	nm += ft_printf("Print it my c = |%c|\n", 'c');
+	/*nm += ft_printf("Print it my c = |%c|\n", 'c');
 	nr += printf("Print it re c = |%c|\n", 'c');
 	nm += ft_printf("Print it my s = |%s|\n", "sss");
 	nr += printf("Print it re s = |%s|\n", "sss");
@@ -53,15 +53,21 @@ int main(void)
 	nm += ft_printf("Print it my  -* =  |%-*d|\n", 15, 1234567890);
 	nr += printf("Print it re  -* =  |%-*d|\n", 15, 1234567890);
 	printf("\n");
-	nm += ft_printf("Print it my %s   = |%%|\n", "%%");
-	nr += printf("Print it re %s   = |%%|\n", "%%");
+	nm += ft_printf("Print it my %s = |%%|\n", "%%");
+	nr += printf("Print it re %s = |%%|\n", "%%");
+	nm += ft_printf("Print it my %s = |%5%|\n", "%5%");
+	nr += printf("Print it re %s = |%5%|\n", "%5%");
 	nm += ft_printf("Print it my %s = |%-5%|\n", "%-5%");
 	nr += printf("Print it re %s = |%-5%|\n", "%-5%");
-	nm += ft_printf("Print it my %s = |%05%|\n", "%05%");
-	nr += printf("Print it re %s = |%05%|\n", "%05%");
+	nm += ft_printf("Print it my %s  = |%05%|\n", "%05%");
+	nr += printf("Print it re %s  = |%05%|\n", "%05%");
+	nm += ft_printf("Print it my %s  = |%-05%|\n", "%-05%");
+	nr += printf("Print it re %s  = |%-05%|\n", "%-05%");
 	printf("\n");
 	nm += ft_printf("Print it my uni = |%c|\n", '\x00');
 	nr += printf("Print it re uni = |%c|\n", '\x00');
+	nm += ft_printf("Print it my uni = |%5c|\n", '\x00');
+	nr += printf("Print it re uni = |%5c|\n", '\x00');
 	nm += ft_printf("Print it my uni = |%s|\n", "\x00");
 	nr += printf("Print it re uni = |%s|\n", "\x00");
 	nm += ft_printf("Print it my uni = |%-5s|\n", "\x00");
@@ -114,9 +120,12 @@ int main(void)
 	nr += printf("Print it re .X = |%.X|\n", 0);
 	printf("\n");
 	nm += ft_printf("Print it my 0-3.3X = |%0-3.3X|\n", 6935);
-	nr += printf("Print it re 0-3.3X = |%0-3.3X|\n", 6935);
+	nr += printf("Print it re 0-3.3X = |%0-3.3X|\n", 6935);*/
 	//nm += ft_printf("Print it my 0*i = |%0*i|\n", -7, 123);
 	//nr += printf("Print it re 0*i = |%0*i|\n", -7, 123);
+	
+	nm += ft_printf("Print it my .6d = |%.6d|\n", -3);
+	nr += printf("Print it re .6d = |%.6d|\n", -3);
 	printf("Numbers are %i %i\n", nm, nr);
 }
 /*

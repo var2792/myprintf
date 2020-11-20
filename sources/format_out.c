@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
-
 int		out_str_zero(t_format *format)
 {
 	unsigned int	i;

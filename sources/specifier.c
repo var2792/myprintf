@@ -19,6 +19,7 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	unsigned char	up;
 	long int		num_p;
 
+	temp = NULL;
 	format->specifier = **str;
 	if (format->print_len == -1)
 		format->print_len = 0;
@@ -27,12 +28,14 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 		up = (unsigned char)va_arg(*app, int);
 		format->help = (unsigned char*)ft_strjoin_lens(format->help,  &up, ft_strlen(format->help), 1);
 		format->print_len = 1;
+		/*printf("f->pl is %li<---\n", format->print_len);
+		printf("f->h |%s|<---\n", format->help);
+		printf("f->res |%s|<---\n", format->result);*/
 		(*str)++;
 		return (1);
 	}
 	if (format->specifier == 's')
 	{
-		temp = NULL;
 		p = va_arg(*app, unsigned char*);
 		temp = (unsigned char*)ft_strjoin_lens(temp, p, ft_strlen(temp), ft_strlen(p));
 		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
@@ -80,13 +83,13 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	if (format->specifier == 'p')
 	{
 		num_p = va_arg(*app, long int);
-		if (num_p <= 0)
+		/*if (num_p <= 0)
 		{
 			format->help = (unsigned char*)ft_strjoin_lens(format->help, "(nil)", ft_strlen(format->help), 5);
 			format->print_len = ft_strlen(format->help);
 			(*str)++;
 			return (1);
-		}
+		}*/
 		p = malloc(sizeof(char) * 3);
 		p[0] = '0';
 		p[1] = 'x';
@@ -102,17 +105,11 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	}
 	if (format->specifier == '%')
 	{
-		temp = NULL;
-		p = malloc(sizeof(char) * 2);
-		p[0] = '%';
-		p[1] = '\0';
-		temp = (unsigned char*)ft_strjoin_lens(temp, p, ft_strlen(temp), 1);
-		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
+		format->help = (unsigned char*)ft_strjoin_lens(format->help, "%", ft_strlen(format->help), 1);
 		free(temp);
-		free(p);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
-		return (2);
+		return (1);
 	}
 	return (0);
 }

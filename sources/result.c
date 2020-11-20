@@ -26,7 +26,7 @@ void	not_null(t_format *format, int fl, int *len)
 
 int	if_null(t_format *format)
 {
-	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre >=0 && format->specifier != 'p'))
+	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre >= 0 && format->specifier == 's'))
 	{
 		if (format->precision == '.' && format->wid_pre < 6)
 		{
@@ -42,6 +42,7 @@ int	if_null(t_format *format)
 	}
 	return (1);
 }
+
 void	*result_char(int *len, t_format *format)
 {
 	int fl;
@@ -51,18 +52,22 @@ void	*result_char(int *len, t_format *format)
 	{
 		if (if_null(format))
 		{
+			/*printf("fl is %i<---\n", fl);
+			printf("f->pl is %li<---\n", format->print_len);
+			printf("f->h |%s|<---\n", format->help);
+			printf("f->res |%s|<---\n\n", format->result);*/
 			if (format->flags == '0' || format->precision == '.')
 				fl = out_zero(format);
 			if (format->flags == '-')
 				fl = out_minus(format);
 		}
-			if ((!format->flags && format->wid_fls != 0) || fl == -1)
-				fl = out_without(format);
+		if ((!format->flags && format->wid_fls != 0) || fl == -1)
+			fl = out_without(format);
+		not_null(format, fl, len);
 		/*printf("fl is %i<---\n", fl);
 		printf("f->pl is %li<---\n", format->print_len);
 		printf("f->h |%s|<---\n", format->help);
-		printf("f->res |%s|<---\n", format->result);*/
-		not_null(format, fl, len);
+		printf("f->res |%s|<---\n\n", format->result);*/
 		return (format->result);
 	}
 	if (format->success == 2)

@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:23 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 14:05:43 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 14:30:36 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	not_null(t_format *format, int fl, int *len)
 
 int	if_null(t_format *format)
 {
-	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre >=0))
+	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre >=0 && format->specifier != 'p'))
 	{
 		if (format->precision == '.' && format->wid_pre < 6)
 		{

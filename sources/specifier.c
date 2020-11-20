@@ -6,7 +6,7 @@
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:21:29 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 13:37:52 by tarneld          ###   ########.fr       */
+/*   Updated: 2020/11/20 14:27:55 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 	if (format->specifier == 'p')
 	{
 		num_p = va_arg(*app, long int);
-		if (num_p <=0)
+		if (num_p <= 0)
 		{
 			format->help = (unsigned char*)ft_strjoin_lens(format->help, "(nil)", ft_strlen(format->help), 5);
 			format->print_len = ft_strlen(format->help);

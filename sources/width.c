@@ -17,8 +17,6 @@ static int	width_star(char **str, va_list *app, t_format *format, char flag)
 	int len;
 
 	len = va_arg(*app, unsigned int);
-	if (len < 0)
-		len = -1;
 	if (flag == 'p')
 		format->wid_pre = len;
 	else if (flag == 'f')

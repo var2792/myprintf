@@ -20,11 +20,11 @@ int		out_str_zero(t_format *format)
 	if (format->wid_pre < 0)
 		return (0);
 	temp = format->help + i;
-	while (i < format->wid_pre && temp[0] != 0)
+	while (i < format->wid_pre && temp[0] != 0 )
 	{
 		//printf("temp str is |%s|<---\n", temp);
-		format->result = ft_strjoin_lens(format->result, temp, ft_strlen(format->result), 1); //пробелы ли?
-		//printf("f->res str is |%s|<---\n", format->result);
+		format->result = ft_strjoin_lens(format->result, temp, ft_strlen(format->result), 1);
+		//printf("----> f->res str is |%s|\n", format->result);
 		temp = format->help + ++i;
 	}
 	if (format->wid_pre == 0)
@@ -48,7 +48,9 @@ int		out_zero(t_format *format)
 	temp = NULL;
 	if (ft_strlen(format->help) == 0)
 		return (0);
-	size = (format->flags == '0') ? format->wid_fls : format->wid_pre;
+	size = (format->flags == '0' &&  format->precision != '.') ? format->wid_fls : format->wid_pre; //могут быть 07.10 ?
+	if (format->flags == '0' &&  format->precision == '.' && format->print_len < format->wid_fls)
+		format->flags = 0;
 	if (format->specifier == 's')
 		return (out_str_zero(format));
 	if (size < 0 || format->print_len >= size)
@@ -60,7 +62,21 @@ int		out_zero(t_format *format)
 		temp = ft_strjoin_lens(temp, "0", ft_strlen(temp), 1);
 		i++;
 	}
-	format->result = (unsigned char*)ft_strjoin_lens(temp, format->help, ft_strlen(temp), format->print_len);
+	if ((format->specifier == 'i' || format->specifier == 'd') && format->help[0] == '-')
+	{
+		unsigned char	*t = NULL;
+		if (format->precision == '.')
+		{
+			temp = ft_strjoin_lens(temp, "0", ft_strlen(temp), 1);
+			i++;
+		}
+		t = ft_strjoin_lens(t, "-", 0, 1);
+		t = ft_strjoin_lens(t, temp, 1, i);
+		free(temp);
+		format->result = (unsigned char*)ft_strjoin_lens(t, &(format->help[1]), ft_strlen(t), format->print_len - 1);
+	}
+	else
+		format->result = (unsigned char*)ft_strjoin_lens(temp, format->help, ft_strlen(temp), format->print_len);
 	format->print_len += i;
 	free(format->help);
 	return (1);
@@ -82,7 +98,7 @@ int		out_minus(t_format *format)
 		temp = ft_strjoin_lens(temp, " ", ft_strlen(temp), 1);
 		i++;
 	}
-	if (format->precision == '.')
+	if (format->precision == '.' && format->result != NULL)
 		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, ft_strlen(format->result), i);
 	else
 		format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), i);
@@ -108,7 +124,7 @@ int		out_without(t_format *format)
 		temp = ft_strjoin_lens(temp, " ", ft_strlen(temp), 1);
 		i++;
 	}
-	if (format->precision == '.')
+	if (format->precision == '.' && format->result != NULL)
 	{
 		temp = (unsigned char*)ft_strjoin_lens(temp, format->result, i, ft_strlen(format->result));
 		free(format->result);

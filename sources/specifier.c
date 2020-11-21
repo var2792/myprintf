@@ -28,20 +28,24 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 		up = (unsigned char)va_arg(*app, int);
 		format->help = (unsigned char*)ft_strjoin_lens(format->help,  &up, ft_strlen(format->help), 1);
 		format->print_len = 1;
-		/*printf("f->pl is %li<---\n", format->print_len);
-		printf("f->h |%s|<---\n", format->help);
-		printf("f->res |%s|<---\n", format->result);*/
 		(*str)++;
 		return (1);
 	}
 	if (format->specifier == 's')
 	{
 		p = va_arg(*app, unsigned char*);
+		if (p == NULL) //связь с result.c c 37-41
+			p = ft_strjoin_lens(p, "(null)", 0, 6);
 		temp = (unsigned char*)ft_strjoin_lens(temp, p, ft_strlen(temp), ft_strlen(p));
 		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
 		free(temp);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
 		return (1);
 	}
 	if (format->specifier == 'd' || format->specifier == 'i')
@@ -51,6 +55,11 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 		free(temp);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
 		return (1);
 	}
 	if (format->specifier == 'u')
@@ -60,24 +69,53 @@ int		f_specifier(char **str, va_list *app, t_format *format)
 		free(temp);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
 		return (1);
 	}
 	if (format->specifier == 'X')
 	{
-		temp = (unsigned char*)ft_itoa_base(va_arg(*app, int), 'X');
+		temp = (unsigned char*)ft_itoa_base(va_arg(*app, unsigned int), 'X');
 		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
 		free(temp);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
 		return (1);
 	}
 	if (format->specifier == 'x')
 	{
-		temp = (unsigned char*)ft_itoa_base(va_arg(*app, int), 'x');
+		temp = (unsigned char*)ft_itoa_base(va_arg(*app, unsigned int), 'x');
 		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
 		free(temp);
 		format->print_len = ft_strlen(format->help);
 		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
+		return (1);
+	}
+	if (format->specifier == 'o')
+	{
+		temp = (unsigned char*)ft_itoa_base(va_arg(*app, unsigned int), 'o');
+		format->help = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), ft_strlen(temp));
+		free(temp);
+		format->print_len = ft_strlen(format->help);
+		(*str)++;
+		if (format->wid_fls < 0)
+		{
+			format->flags = '-';
+			format->wid_fls *= -1;
+		}
 		return (1);
 	}
 	if (format->specifier == 'p')

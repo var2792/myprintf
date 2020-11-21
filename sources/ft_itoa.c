@@ -83,6 +83,8 @@ static char	*res_sort(int i, int fl, int *convert, char base)
 		return (res16(i, convert));
 	if (base == 'x')
 		return (res16l(i, convert));
+	if (base == 'o')
+		return (res10(i, fl, convert));
 	return (NULL);
 }
 
@@ -104,13 +106,14 @@ char		*ft_itoa_base(long int value, char base)
 	}
 	i = 0;
 	b = (base == 'A') ? 10 : 16;
+	b = (base == 'o') ? 8 : b;
 	while (val > b - 1)
 	{
 		convert[i++] = val % b;
 		val = val / b;
 	}
 	convert[i++] = val;
-	if (base == 'A' || base == 'x' || base == 'X')
+	if (base == 'A' || base == 'x' || base == 'X' || base == 'o')
 		return (res_sort(i, fl, convert, base));
 	return (NULL);
 }

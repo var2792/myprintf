@@ -99,9 +99,9 @@ int		out_minus(t_format *format)
 		i++;
 	}
 	if (format->precision == '.' && format->result != NULL)
-		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, ft_strlen(format->result), i);
+		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, format->print_len, i); //ft_strlen(format->result), i);
 	else
-		format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), i);
+		format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, format->print_len, i);//ft_strlen(format->help), i);
 	//format->help = NULL;
 	free(temp);
 	format->print_len += i;
@@ -126,7 +126,7 @@ int		out_without(t_format *format)
 	}
 	if (format->precision == '.' && format->result != NULL)
 	{
-		temp = (unsigned char*)ft_strjoin_lens(temp, format->result, i, ft_strlen(format->result));
+		temp = (unsigned char*)ft_strjoin_lens(temp, format->result, i, format->print_len);//ft_strlen(format->result));
 		free(format->result);
 		format->result = temp;
 	}

@@ -7,7 +7,7 @@ int main(void)
 	int nm = 0;
 	int nr = 0;
 
-	/*nm += ft_printf("Print it my c = |%c|\n", 'c');
+	nm += ft_printf("Print it my c = |%c|\n", 'c');
 	nr += printf("Print it re c = |%c|\n", 'c');
 	nm += ft_printf("Print it my s = |%s|\n", "sss");
 	nr += printf("Print it re s = |%s|\n", "sss");
@@ -23,8 +23,8 @@ int main(void)
 	nr += printf("Print it re X = |%X|\n", 27);
 	nm += ft_printf("Print it my d = |%d|\n", 4096);
 	nr += printf("Print it re d = |%d|\n", 4096);
-	nm += ft_printf("Print it my null-p = |%p|\n", NULL);
-	nr += printf("Print it re null-p = |%p|\n", NULL);
+	//nm += ft_printf("Print it my null-p = |%p|\n", NULL);
+	//nr += printf("Print it re null-p = |%p|\n", NULL);
 	printf("\n");
 	nm += ft_printf("Print it my 010d   =  |%010d|\n", 1);
 	nr += printf("Print it re  010d  =  |%010d|\n", 1);
@@ -56,10 +56,10 @@ int main(void)
 	nm += ft_printf("Print it my uni = |%c|\n", '\x00');
 	nr += printf("Print it re uni = |%c|\n", '\x00');
 	nm += ft_printf("Print it my uni = |%5c|\n", '\x00');
-	nr += printf("Print it re uni = |%5c|\n", '\x00');*/
+	nr += printf("Print it re uni = |%5c|\n", '\x00');
 	nm += ft_printf("Print it my uni = |%-5c|\n", '\x00');
 	nr += printf("Print it re uni = |%-5c|\n", '\x00');
-	/*nm += ft_printf("Print it my uni = |%s|\n", "\x00");
+	nm += ft_printf("Print it my uni = |%s|\n", "\x00");
 	nr += printf("Print it re uni = |%s|\n", "\x00");
 	nm += ft_printf("Print it my uni = |%-5s|\n", "\x00");
 	nr += printf("Print it re uni = |%-5s|\n", "\x00");
@@ -82,7 +82,7 @@ int main(void)
 	nr += printf("Print it re 7.3s 7.7s = |%7.3s%7.7s|\n", "hello", "world");
 	nm += ft_printf("Print it my 3.03s 7.7s = |%3.03s%7.7s|\n", "hello", "world");
 	nr += printf("Print it re 3.03s 7.7s = |%3.03s%7.7s|\n", "hello", "world");
-	printf("\n");
+	/*printf("\n");
 	nm += ft_printf("Print it my %s = |%%|\n", "%%");
 	nr += printf("Print it re %s = |%%|\n", "%%");
 	nm += ft_printf("Print it my %s = |%5%|\n", "%5%");
@@ -103,7 +103,7 @@ int main(void)
 	nm += ft_printf("Print it my  10s  = |%10s|\n", NULL);
 	nr += printf("Print it re  10s  = |%10s|\n", NULL);
 	nm += ft_printf("Print it my  -10s  = |%-10s|\n", NULL);
-	nr += printf("Print it re  -10s  = |%-10s|\n", NULL);
+	nr += printf("Print it re  -10s  = |%-10s|\n", NULL);*/
 	printf("\n");
 	nm += ft_printf("Print it my .*(-1)s = |%.*s|\n", -1, "ssssss");
 	nr += printf("Print it re .*(-1)s = |%.*s|\n", -1, "ssssss");
@@ -137,8 +137,11 @@ int main(void)
 	nm += ft_printf("Print it my 3.3s 3.7s = |%3.3s%3.7s|\n", "hello", "world");//result.c связь c19 c25
 	nr += printf("Print it re 3.3s 3.7s = |%3.3s%3.7s|\n", "hello", "world");
 	nm += ft_printf("Print it my = |%% *.5i 42 == |%            *.5i|\n", 4, 42);
-	nr += printf("Print it re = |%% *.5i 42 == |%            *.5i|\n", 4, 42);*/
-	printf("Numbers are %i %i\n", nm, nr);
+	nr += printf("Print it re = |%% *.5i 42 == |%            *.5i|\n", 4, 42);
+	if (nm == nr)
+		printf("\n=========>>>>>IT'S OK!<<<<<=========\n");
+	else
+		printf("Numbers are my - %i, re - %i\n", nm, nr);
 }
 /*
 0 & num - minim lenght with null, if longer - just num

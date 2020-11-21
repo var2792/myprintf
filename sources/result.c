@@ -16,9 +16,6 @@ void	not_null(t_format *format, int fl, int *len)
 {
 	unsigned char *sp;
 
-	sp = malloc(2 * sizeof(char));
-	sp[0] = 32;
-	sp[1] = 0;
 	if (format->help != NULL)
 	{
 		if ((fl == 0 && format->result == NULL) || (!format->precision && !format->flags && !format->wid_fls))
@@ -29,12 +26,15 @@ void	not_null(t_format *format, int fl, int *len)
 		format->result = format->help;
 	if (format->isspase)
 	{
+		sp = malloc(2 * sizeof(char));
+		sp[0] = 32;
+		sp[1] = 0;
 		sp = ft_strjoin_lens(sp, format->result, 1, format->print_len);
 		free(format->result);
 		format->result = sp;
 		*len += 1;
 	}
-	
+
 }
 
 int	if_null(t_format *format)

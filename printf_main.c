@@ -53,16 +53,16 @@ int main(void)
 	nm += ft_printf("Print it my  -* =  |%-*d|\n", 15, 1234567890);
 	nr += printf("Print it re  -* =  |%-*d|\n", 15, 1234567890);
 	printf("\n");
-	nm += ft_printf("Print it my uni = |%c|\n", '\x00');
-	nr += printf("Print it re uni = |%c|\n", '\x00');
-	nm += ft_printf("Print it my uni = |%5c|\n", '\x00');
-	nr += printf("Print it re uni = |%5c|\n", '\x00');
-	nm += ft_printf("Print it my uni = |%-5c|\n", '\x00');
-	nr += printf("Print it re uni = |%-5c|\n", '\x00');
-	nm += ft_printf("Print it my uni = |%s|\n", "\x00");
-	nr += printf("Print it re uni = |%s|\n", "\x00");
-	nm += ft_printf("Print it my uni = |%-5s|\n", "\x00");
-	nr += printf("Print it re uni = |%-5s|\n", "\x00");
+	nm += ft_printf("Print it my uni c = |%c|\n", '\x00');
+	nr += printf("Print it re uni c = |%c|\n", '\x00');
+	nm += ft_printf("Print it my uni 5c= |%5c|\n", '\x00');
+	nr += printf("Print it re uni 5c= |%5c|\n", '\x00');
+	/*nm += ft_printf("Print it my uni -5c = |%-5c|\n", '\x00');
+	nr += printf("Print it re uni -5c = |%-5c|\n", '\x00');*/
+	nm += ft_printf("Print it my uni s = |%s|\n", "\x00");
+	nr += printf("Print it re uni s = |%s|\n", "\x00");
+	nm += ft_printf("Print it my uni -5s = |%-5s|\n", "\x00");
+	nr += printf("Print it re uni -5s = |%-5s|\n", "\x00");
 	printf("\n");
 	nm += ft_printf("Print it my .06s = |%.06s|\n", "hello");
 	nr += printf("Print it re .06s = |%.06s|\n", "hello");

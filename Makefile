@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c sources/format_specifier.c sources/specifier.c sources/format_out.c sources/flags.c sources/width.c sources/result.c sources/precision.c sources/ft_strjoin.c sources/ft_findchr.c sources/ft_strlen.c sources/ft_atoi.c sources/ft_itoa.c
+SRCS		= ft_printf.c sources/flags.c sources/format_out.c sources/format_specifier.c sources/ft_atoi.c sources/ft_findchr.c sources/ft_itoa.c sources/ft_strjoin.c sources/ft_strlen.c sources/precision.c sources/specifier.c sources/specifier_utils.c sources/result.c sources/width.c
 
 OBJS		=	${SRCS:.c=.o}
 

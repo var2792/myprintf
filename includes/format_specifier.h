@@ -27,6 +27,7 @@ typedef struct	s_format
 	long int		print_len;
 	unsigned char	*help;
 	int				success;
+	int				isspase;
 }				t_format;
 
 void			*format_specifier(char **str, va_list *app, int *len);

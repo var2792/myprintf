@@ -24,6 +24,7 @@ void	null_format(t_format *format)
 	format->print_len = -1;
 	format->help = NULL;
 	format->success = 1;
+	format->isspase = 0;
 }
 
 void	print_format(t_format *format)
@@ -46,6 +47,11 @@ void	*format_specifier(char **str, va_list *app, int *len)
 
 	(*str)++;
 	null_format(&format);
+	while (**str == 32 && **str != '\0')
+	{
+		format.isspase = 1;
+		(*str)++;
+	}
 	if (ft_findchr("-0", **str) > 0 && format.success)
 		format.success = f_flags(str, &format);
 	if (ft_findchr("1234567890*", **str) > 0 && format.success)
@@ -57,6 +63,6 @@ void	*format_specifier(char **str, va_list *app, int *len)
 		format.success = f_width(str, app, &format, 'p');
 	if (ft_findchr("cspdiuxXo%", **str) > 0 && format.success)
 		format.success = f_specifier(str, app, &format);
-	//print_format(&format);
+	print_format(&format);
 	return (result_char(len, &format));
 }

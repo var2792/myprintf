@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:20:49 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 13:57:27 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:10:43 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:11:34 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
+
 int		out_str_zero(t_format *format)
 {
 	unsigned int	i;
@@ -20,25 +21,19 @@ int		out_str_zero(t_format *format)
 	if (format->wid_pre < 0 || ft_strlen(format->help) == 0)
 		return (0);
 	temp = format->help + i;
-	while (i < format->wid_pre && temp[0] != 0 )
+	while (i < format->wid_pre && temp[0] != 0)
 	{
-		//printf("temp str is |%s|<---\n", temp);
 		format->result = ft_strjoin_lens(format->result, temp, ft_strlen(format->result), 1);
-		//printf("----> f->res str is |%s|\n", format->result);
 		temp = format->help + ++i;
 	}
 	if (format->wid_pre == 0)
 		format->result = ft_strjoin_lens(format->result, temp, ft_strlen(format->result), 0);
-	//printf("f->res str is |%s| %i<---\n", format->result, i);
-	//printf("f->h str is |%s|<---\n", format->help);
 	format->print_len = i;
 	free(format->help);
-	//free(temp);
-	//printf("\ntemp!\n---------------------->>>><<<<----------------------\n\n");
 	return (1);
 }
 
-int		negat_zero_num(t_format *format, unsigned char	*temp, int	i)
+int		negat_zero_num(t_format *format, unsigned char *temp, int i)
 {
 	unsigned char	*t;
 
@@ -72,8 +67,6 @@ int		out_zero(t_format *format)
 		return (out_str_zero(format));
 	if (format->specifier == 'c')
 		return (-1);
-	/*printf("f->h |%li| |%li|<---\n", format->print_len, size);
-	printf("f->res |%s|<---\n\n", format->result);*/
 	if (size < 0 || format->print_len >= size || ft_strlen(format->help) == 0)
 		if (!(format->print_len == size && (format->specifier == 'i' || format->specifier == 'd') && format->help[0] == '-'))
 			return (0);
@@ -105,16 +98,9 @@ int		out_minus(t_format *format)
 		i++;
 	}
 	if (format->precision == '.' && format->result != NULL)
-		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, ft_strlen(format->result), i); //ft_strlen(format->result), i); //
+		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, ft_strlen(format->result), i);
 	else
-	{
-		if (format->help[0] == 0 && format->print_len == 1)
-		{
-			format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, 1, i);
-		}
-		else
-			format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), i); //ft_strlen(format->help), i); //format->print_len, i); // <<--- указывает на утечки
-	}
+		format->result = (format->help[0] == 0 && format->print_len == 1) ? (unsigned char*)ft_strjoin_lens(format->help, temp, 1, i) : (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), i);
 	free(temp);
 	format->print_len += i;
 	return (1);
@@ -135,7 +121,7 @@ int		out_without(t_format *format)
 		temp = ft_strjoin_lens(temp, " ", ft_strlen(temp), 1);
 	if (format->precision == '.' && format->result != NULL)
 	{
-		temp = (unsigned char*)ft_strjoin_lens(temp, format->result, i, format->print_len); //ft_strlen(format->result)); //
+		temp = (unsigned char*)ft_strjoin_lens(temp, format->result, i, format->print_len);
 		free(format->result);
 		format->result = temp;
 	}

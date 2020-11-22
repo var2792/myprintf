@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_specifier.h                                 :+:      :+:    :+:   */
+/*   format_specifier.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:21:37 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 13:24:51 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:15:16 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:15:26 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int				f_specifier(char **str, va_list *app, t_format *format);
 int				integer_specifier(char **str, va_list *app, t_format *format);
 int				unsigint_specifier(char **str, va_list *app, t_format *format);
 int				unsigoct_specifier(char **str, va_list *app, t_format *format);
-int				unsighex_lit_specifier(char **str, va_list *app, t_format *format);
-int				unsighex_big_specifier(char **str, va_list *app, t_format *format);
+int				unsighex_lit_specifier(char **str, va_list *app,
+	t_format *format);
+int				unsighex_big_specifier(char **str, va_list *app,
+	t_format *format);
 void			*result_char(int *len, t_format *format);
 int				out_zero(t_format *format);
 int				out_minus(t_format *format);

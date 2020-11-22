@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:21:06 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:41:36 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:07:09 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:07:23 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,13 @@ static char	*res_sort(int i, int fl, int *convert, char base)
 	return (NULL);
 }
 
-char		*ft_itoa_base(long int value, char base)
+char		*ft_itoa_base(long int val, char base)
 {
-	long long int	val;
 	int				i;
 	int				convert[512];
 	int				b;
 	int				fl;
 
-	val = value;
 	fl = 0;
 	if (val < 0)
 	{

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:21:29 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 14:27:55 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:13:30 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:13:39 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		char_specifier(char **str, va_list *app, t_format *format)
 	unsigned char	up;
 
 	up = (unsigned char)va_arg(*app, int);
-	format->help = (unsigned char*)ft_strjoin_lens(format->help,  &up, ft_strlen(format->help), 1);
+	format->help = (unsigned char*)ft_strjoin_lens(format->help, &up, ft_strlen(format->help), 1);
 	format->print_len = 1;
 	(*str)++;
 	if (format->wid_fls < 0)
@@ -35,7 +35,7 @@ int		string_specifier(char **str, va_list *app, t_format *format)
 
 	temp = NULL;
 	p = va_arg(*app, unsigned char*);
-	if (p == NULL) //связь с result.c c 37-41
+	if (p == NULL)
 	{
 		p = ft_strjoin_lens(p, "(null)", 0, 6);
 		temp = (unsigned char*)ft_strjoin_lens(temp, p, ft_strlen(temp), ft_strlen(p));
@@ -57,27 +57,20 @@ int		string_specifier(char **str, va_list *app, t_format *format)
 
 int		pointer_specifier(char **str, va_list *app, t_format *format)
 {
-	unsigned char	*temp;
+	unsigned char	*t;
 	unsigned char	*p;
 	long int		num_p;
 
-	temp = NULL;
+	t = NULL;
 	num_p = va_arg(*app, long int);
-	/*if (num_p <= 0)
-	{
-		format->help = (unsigned char*)ft_strjoin_lens(format->help, "(nil)", ft_strlen(format->help), 5);
-		format->print_len = ft_strlen(format->help);
-		(*str)++;
-		return (1);
-	}*/
 	p = malloc(sizeof(char) * 3);
 	p[0] = '0';
 	p[1] = 'x';
 	p[2] = '\0';
-	temp = (unsigned char*)ft_itoa_base(num_p, 'x');
-	p = (unsigned char*)ft_strjoin_lens(p, temp, ft_strlen(p), ft_strlen(temp));
+	t = (unsigned char*)ft_itoa_base(num_p, 'x');
+	p = (unsigned char*)ft_strjoin_lens(p, t, ft_strlen(p), ft_strlen(t));
 	format->help = (unsigned char*)ft_strjoin_lens(format->help, p, ft_strlen(format->help), ft_strlen(p));
-	free(temp);
+	free(t);
 	free(p);
 	format->print_len = ft_strlen(format->help);
 	(*str)++;
@@ -89,7 +82,8 @@ int		percent_specifier(char **str, t_format *format)
 	unsigned char	*temp;
 
 	temp = NULL;
-	format->help = (unsigned char*)ft_strjoin_lens(format->help, "%", ft_strlen(format->help), 1);
+	format->help = (unsigned char*)ft_strjoin_lens(format->help,
+		"%", ft_strlen(format->help), 1);
 	free(temp);
 	format->print_len = ft_strlen(format->help);
 	(*str)++;

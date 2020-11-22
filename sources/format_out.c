@@ -17,7 +17,7 @@ int		out_str_zero(t_format *format)
 	unsigned char	*temp;
 
 	i = 0;
-	if (format->wid_pre < 0)
+	if (format->wid_pre < 0 || ft_strlen(format->help) == 0)
 		return (0);
 	temp = format->help + i;
 	while (i < format->wid_pre && temp[0] != 0 )
@@ -43,7 +43,7 @@ int		negat_zero_num(t_format *format, unsigned char	*temp, int	i)
 	unsigned char	*t;
 
 	t = NULL;
-	if (format->precision == '.')
+	if (format->precision == '.' && format->wid_pre >= 0)
 	{
 		temp = ft_strjoin_lens(temp, "0", ft_strlen(temp), 1);
 		i++;
@@ -65,17 +65,18 @@ int		out_zero(t_format *format)
 
 	i = -1;
 	temp = NULL;
-	if (ft_strlen(format->help) == 0)
-		return (0);
-	size = (format->flags == '0' && format->precision != '.') ? format->wid_fls : format->wid_pre;
-	if (format->flags == '0' && format->precision == '.' && format->print_len < format->wid_fls)
+	size = (format->flags == '0' && (format->precision != '.' || format->wid_pre < 0)) ? format->wid_fls : format->wid_pre;
+	if (format->flags == '0' && format->precision == '.' && format->print_len < format->wid_fls && format->wid_pre >= 0)
 		format->flags = 0;
 	if (format->specifier == 's')
 		return (out_str_zero(format));
-	if (size < 0 || format->print_len >= size)
-		return (0);
 	if (format->specifier == 'c')
 		return (-1);
+	/*printf("f->h |%li| |%li|<---\n", format->print_len, size);
+	printf("f->res |%s|<---\n\n", format->result);*/
+	if (size < 0 || format->print_len >= size || ft_strlen(format->help) == 0)
+		if (!(format->print_len == size && (format->specifier == 'i' || format->specifier == 'd') && format->help[0] == '-'))
+			return (0);
 	while (++i + format->print_len < size)
 		temp = ft_strjoin_lens(temp, "0", ft_strlen(temp), 1);
 	if ((format->specifier == 'i' || format->specifier == 'd') && format->help[0] == '-')
@@ -104,9 +105,16 @@ int		out_minus(t_format *format)
 		i++;
 	}
 	if (format->precision == '.' && format->result != NULL)
-		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, format->print_len, i); //ft_strlen(format->result), i); //
+		format->result = (unsigned char*)ft_strjoin_lens(format->result, temp, ft_strlen(format->result), i); //ft_strlen(format->result), i); //
 	else
-		format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, format->print_len, i); //ft_strlen(format->help), i); // <<--- указывает на утечки
+	{
+		if (format->help[0] == 0 && format->print_len == 1)
+		{
+			format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, 1, i);
+		}
+		else
+			format->result = (unsigned char*)ft_strjoin_lens(format->help, temp, ft_strlen(format->help), i); //ft_strlen(format->help), i); //format->print_len, i); // <<--- указывает на утечки
+	}
 	free(temp);
 	format->print_len += i;
 	return (1);

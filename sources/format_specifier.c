@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:20:53 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 14:28:41 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 15:16:14 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 15:16:18 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ void	*format_specifier(char **str, va_list *app, int *len)
 		format.isspase = 1;
 		(*str)++;
 	}
-	if (ft_findchr("-0", **str) > 0 && format.success)
-		format.success = f_flags(str, &format);
-	if (ft_findchr("1234567890*", **str) > 0 && format.success)
-		format.success = f_width(str, app, &format, 'f');
+	while (ft_findchr("-01234567890*", **str) > 0)
+	{
+		if (ft_findchr("-0", **str) > 0 && format.success)
+			format.success = f_flags(str, &format);
+		if (ft_findchr("1234567890*", **str) > 0 && format.success)
+			format.success = f_width(str, app, &format, 'f');
+	}
 	if (ft_findchr(".", **str) > 0 && format.success)
 		format.success = f_precision(str, &format);
 	if (ft_findchr("1234567890*", **str) > 0 &&

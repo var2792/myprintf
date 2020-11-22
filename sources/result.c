@@ -37,7 +37,7 @@ void	not_null(t_format *format, int fl, int *len)
 
 }
 
-int	if_null(t_format *format)
+void	if_null(t_format *format)
 {
 	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre == 0/* && format->specifier == 's'*/))
 	{
@@ -45,7 +45,6 @@ int	if_null(t_format *format)
 		{
 			format->help = ft_strjoin_lens(format->help, " ", 0, 0);
 			format->print_len = 0;
-			return (0);
 		}
 		/*else //связь с specifier.c c40-41
 		{
@@ -53,7 +52,6 @@ int	if_null(t_format *format)
 			format->print_len = 6;
 		}*/
 	}
-	return (1);
 }
 
 void	*result_char(int *len, t_format *format)
@@ -63,13 +61,14 @@ void	*result_char(int *len, t_format *format)
 	fl = 0;
 	if (format->success == 1)
 	{
-		if (if_null(format))
-		{
-			if (format->flags == '0' || format->precision == '.')
-				fl = out_zero(format);
-		}
+		if_null(format);
+		if (format->flags == '0' || format->precision == '.')
+			fl = out_zero(format);
 		if (format->flags == '-')
 			fl = out_minus(format);
+		/*printf("fl is %i<---\n", fl);
+		printf("f->fl |%c|<---\n", format->flags);
+		printf("f->wf |%li|<---\n", format->wid_fls);*/
 		if ((!format->flags && format->wid_fls != 0) || fl == -1)
 			fl = out_without(format);
 		not_null(format, fl, len);
@@ -82,6 +81,7 @@ void	*result_char(int *len, t_format *format)
 	}
 	if (format->success == 2)
 	{
+		printf("\n\n-----------><---------------\n\n");
 		format->result = format->help;
 		*len += format->print_len;
 		return (format->result);

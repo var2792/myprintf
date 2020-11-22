@@ -20,6 +20,11 @@ int		char_specifier(char **str, va_list *app, t_format *format)
 	format->help = (unsigned char*)ft_strjoin_lens(format->help,  &up, ft_strlen(format->help), 1);
 	format->print_len = 1;
 	(*str)++;
+	if (format->wid_fls < 0)
+	{
+		format->flags = '-';
+		format->wid_fls *= -1;
+	}
 	return (1);
 }
 

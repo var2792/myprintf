@@ -17,16 +17,16 @@
 
 typedef struct	s_format
 {
-	char			flags;
-	char			*width;
-	long int		wid_fls;
-	long int		wid_pre;
-	char			precision;
-	char			specifier;
-	unsigned char	*result;
-	long int		print_len;
-	unsigned char	*help;
-	int				success;
+	char			fl;
+	char			*w;
+	long int		wf;
+	long int		wp;
+	char			pr;
+	char			sp;
+	unsigned char	*re;
+	long int		pl;
+	unsigned char	*t;
+	int				su;
 	int				isspase;
 }				t_format;
 

@@ -12,58 +12,58 @@
 
 #include "../includes/format_specifier.h"
 
-void	not_null(t_format *format, int fl, int *len)
+void	not_null(t_format *f, int fl, int *len)
 {
 	unsigned char *sp;
 
-	if (format->help != NULL)
+	if (f->t != NULL)
 	{
-		if ((fl == 0 && format->result == NULL) || (!format->precision && !format->flags && !format->wid_fls))
-			format->result = format->help;
-		*len += format->print_len;
+		if ((fl == 0 && f->re == NULL) || (!f->pr && !f->fl && !f->wf))
+			f->re = f->t;
+		*len += f->pl;
 	}
-	if (!format->result && fl == 0)
-		format->result = format->help;
-	if (format->isspase)
+	if (!f->re && fl == 0)
+		f->re = f->t;
+	if (f->isspase)
 	{
 		sp = malloc(2 * sizeof(char));
 		sp[0] = 32;
 		sp[1] = 0;
-		sp = ft_strjoin_lens(sp, format->result, 1, format->print_len);
-		free(format->result);
-		format->result = sp;
+		sp = ft_strjoin_lens(sp, f->re, 1, f->pl);
+		free(f->re);
+		f->re = sp;
 		*len += 1;
 	}
 }
 
-void	if_null(t_format *format)
+void	if_null(t_format *f)
 {
-	if (format->help == NULL || (format->help[0] == '0' && format->wid_pre == 0))
+	if (f->t == NULL || (f->t[0] == '0' && f->wp == 0))
 	{
-		if (format->precision == '.' && format->wid_pre <= 0)
+		if (f->pr == '.' && f->wp <= 0)
 		{
-			format->help = ft_strjoin_lens(format->help, " ", 0, 0);
-			format->print_len = 0;
+			f->t = ft_strjoin_lens(f->t, " ", 0, 0);
+			f->pl = 0;
 		}
 	}
 }
 
-void	*result_char(int *len, t_format *format)
+void	*result_char(int *len, t_format *f)
 {
 	int fl;
 
 	fl = 0;
-	if (format->success == 1)
+	if (f->su == 1)
 	{
-		if_null(format);
-		if (format->flags == '0' || format->precision == '.')
-			fl = out_zero(format);
-		if (format->flags == '-')
-			fl = out_minus(format);
-		if ((!format->flags && format->wid_fls != 0) || fl == -1)
-			fl = out_without(format);
-		not_null(format, fl, len);
-		return (format->result);
+		if_null(f);
+		if (f->fl == '0' || f->pr == '.')
+			fl = out_zero(f);
+		if (f->fl == '-')
+			fl = out_minus(f);
+		if ((!f->fl && f->wf != 0) || fl == -1)
+			fl = out_without(f);
+		not_null(f, fl, len);
+		return (f->re);
 	}
 	*len = -1;
 	return (NULL);

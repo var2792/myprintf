@@ -12,12 +12,12 @@
 
 #include "../includes/format_specifier.h"
 
-int	f_precision(char **str, t_format *format)
+int	f_precision(char **str, t_format *f)
 {
-	format->precision = **str;
-	if (format->print_len == -1)
-		format->print_len = 0;
-	if (format->precision == '.')
+	f->pr = **str;
+	if (f->pl == -1)
+		f->pl = 0;
+	if (f->pr == '.')
 	{
 		(*str)++;
 		return (1);

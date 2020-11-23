@@ -89,7 +89,7 @@ int		out_without(t_format *f)
 	}
 	else
 	{
-		f->re = (unsigned char*)ft_strjoin_lens(temp, f->t, i, f->pl);
+		f->re = (unsigned char*)ft_strjoin_lens(temp, f->t, i, ft_strlen(f->t));
 		free(f->t);
 	}
 	f->pl += i;

@@ -30,7 +30,7 @@ int		out_point_zero(t_format *f)
 	}
 	while (++i + f->pl < sz)
 		t = ft_strjoin_lens(t, "0", ft_strlen(t), 1);
-	t = (unsigned char*)ft_strjoin_lens(t, &(f->t[2]), ft_strlen(t), f->pl);
+	t = (unsigned char*)ft_strjoin_lens(t, &(f->t[2]), ft_strlen(t), ft_strlen(f->t) - 2);
 	f->re = (unsigned char*)ft_strjoin_lens(f->t, t, 2, ft_strlen(t));
 	f->pl += i;
 	free(t);

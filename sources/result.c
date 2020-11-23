@@ -65,6 +65,15 @@ void	*result_char(int *len, t_format *f)
 		not_null(f, fl, len);
 		return (f->re);
 	}
+	if (f->su == 2)
+	{
+		f->t = ft_strjoin_lens(f->t, " ", 0, 0);
+		if (f->wf >0)
+			f->wf -= 1;
+		out_without(f);
+		*len += f->pl;
+		return (f->re);
+	}
 	*len = -1;
 	return (NULL);
 }

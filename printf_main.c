@@ -180,6 +180,12 @@ int main(void)
 	nr += printf("Print it re 2.9p = |%2.9p|\n", 1234);
 	nm += ft_printf("Print it my .5p = |%.5p|\n", NULL);
 	nr += printf("Print it re .5p = |%.5p|\n", NULL);
+	printf("\n");
+	nm += ft_printf("Print it my = |%|\n", NULL);
+	nr += printf("Print it re = |%|\n", NULL);
+	nm += ft_printf("Print it my = |%5|\n", NULL);
+	nr += printf("Print it re = |%5|\n", NULL);
+	//printf("Numbers are my - %i, re - %i\n", nm, nr);
 	if (nm == nr)
 		printf("\n=========>>>>>IT'S OK!<<<<<=========\n");
 	else

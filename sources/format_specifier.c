@@ -23,7 +23,7 @@ void	null_format(t_format *f)
 	f->re = NULL;
 	f->pl = -1;
 	f->t = NULL;
-	f->su = 1;
+	f->su = 2;
 	f->isspase = 0;
 }
 
@@ -39,6 +39,12 @@ void	print_format(t_format *f)
 	printf("plen |%li| =? %li\n", f->pl, ft_strlen(f->t));
 	printf("help |%s|\n", f->t);
 	printf("success |%i|\n\n", f->su);
+}
+
+void	check_format(t_format *f)
+{
+	if ((f->t == NULL || f->sp == 0) && f->su != 0)
+		f->su = 2;
 }
 
 void	*format_specifier(char **str, va_list *app, int *len)
@@ -66,5 +72,7 @@ void	*format_specifier(char **str, va_list *app, int *len)
 		f.su = f_width(str, app, &f, 'p');
 	if (ft_findchr("cspdiuxXo%", **str) > 0 && f.su)
 		f.su = f_specifier(str, app, &f);
+	check_format(&f);
+	//print_format(&f);
 	return (result_char(len, &f));
 }

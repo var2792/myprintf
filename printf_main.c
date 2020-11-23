@@ -134,7 +134,7 @@ int main(void)
 	nm += ft_printf("Print it my -*(7)i = |%-*i|\n", 7, 123);
 	nr += printf("Print it re -*(7)i = |%-*i|\n", 7, 123);
 	printf("\n");
-	nm += ft_printf("Print it my 3.3s 3.7s = |%3.3s%3.7s|\n", "hello", "world");//result.c связь c19 c25
+	nm += ft_printf("Print it my 3.3s 3.7s = |%3.3s%3.7s|\n", "hello", "world");
 	nr += printf("Print it re 3.3s 3.7s = |%3.3s%3.7s|\n", "hello", "world");
 	nm += ft_printf("Print it my = |%% *.5i 42 == |%            *.5i|\n", 4, 42);
 	nr += printf("Print it re = |%% *.5i 42 == |%            *.5i|\n", 4, 42);
@@ -163,6 +163,23 @@ int main(void)
 	nr += printf("Print it re -----.*d = |%-----.*d|\n", 12, 1);
 	nm += ft_printf("Print it my c = |%c,  %-c, %1c, %*c,  %-*c,  %*c, %-*c|\n", 'a', 'a', '-', 12, '-', -12, '0', -12, '%', -12, 'a');
 	nr += printf("Print it my c = |%c,  %-c, %1c, %*c,  %-*c,  %*c, %-*c|\n", 'a', 'a', '-', 12, '-', -12, '0', -12, '%', -12, 'a');
+	printf("\nMODIFICATION\n\n");
+	nm += ft_printf("Print it my 00s = |%00s|\n", "hi low");
+	nr += printf("Print it re 00s = |%00s|\n", "hi low");
+	nm += ft_printf("Print it my 09s = |%09s|\n", "hi low");
+	nr += printf("Print it re 09s = |%09s|\n", "hi low");
+	nm += ft_printf("Print it my p = |%p|\n", NULL);
+	nr += printf("Print it re p = |%p|\n", NULL);
+	nm += ft_printf("Print it my .p = |%.p|\n", NULL);
+	nr += printf("Print it re .p = |%.p|\n", NULL);
+	nm += ft_printf("Print it my 5.p = |%5.p|\n", NULL);
+	nr += printf("Print it re 5.p = |%5.p|\n", NULL);
+	nm += ft_printf("Print it my 2.p = |%2.p|\n", NULL);
+	nr += printf("Print it re 2.p = |%2.p|\n", NULL);
+	nm += ft_printf("Print it my 2.9p = |%2.9p|\n", 1234);
+	nr += printf("Print it re 2.9p = |%2.9p|\n", 1234);
+	nm += ft_printf("Print it my .5p = |%.5p|\n", NULL);
+	nr += printf("Print it re .5p = |%.5p|\n", NULL);
 	if (nm == nr)
 		printf("\n=========>>>>>IT'S OK!<<<<<=========\n");
 	else

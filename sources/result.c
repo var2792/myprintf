@@ -38,7 +38,7 @@ void	not_null(t_format *f, int fl, int *len)
 
 void	if_null(t_format *f)
 {
-	if (f->t == NULL || (f->t[0] == '0' && f->wp == 0))
+	if (f->t == NULL || (f->t[0] == '0' && f->wp == 0 && f->sp != 'p'))
 	{
 		if (f->pr == '.' && f->wp <= 0)
 		{

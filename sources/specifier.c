@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
+#include "../includes/utils.h"
 
 int		char_specifier(char **str, va_list *app, t_format *f)
 {

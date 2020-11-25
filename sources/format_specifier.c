@@ -73,6 +73,5 @@ void	*format_specifier(char **str, va_list *app, int *len)
 	if (ft_findchr("cspdiuxXo%", **str) > 0 && f.su)
 		f.su = f_specifier(str, app, &f);
 	check_format(&f);
-	//print_format(&f);
-	return (result_char(len, &f));
+	return (result_char(len, &f, 0));
 }

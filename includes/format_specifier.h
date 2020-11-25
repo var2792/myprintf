@@ -35,7 +35,7 @@ int				f_flags(char **str, t_format *format);
 int				f_precision(char **str, t_format *format);
 int				f_width(char **str, va_list *app, t_format *format, char flag);
 int				f_specifier(char **str, va_list *app, t_format *format);
-void			*result_char(int *len, t_format *format);
+void			*result_char(int *len, t_format *format, int fl);
 int				out_zero(t_format *format);
 int				out_minus(t_format *format);
 int				out_without(t_format *format);

@@ -48,11 +48,8 @@ void	if_null(t_format *f)
 	}
 }
 
-void	*result_char(int *len, t_format *f)
+void	*result_char(int *len, t_format *f, int fl)
 {
-	int fl;
-
-	fl = 0;
 	if (f->su == 1)
 	{
 		if_null(f);
@@ -68,7 +65,7 @@ void	*result_char(int *len, t_format *f)
 	if (f->su == 2)
 	{
 		f->t = ft_strjoin_lens(f->t, " ", 0, 0);
-		if (f->wf >0)
+		if (f->wf > 0)
 			f->wf -= 1;
 		out_without(f);
 		*len += f->pl;

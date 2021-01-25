@@ -5,67 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/22 15:16:14 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/22 15:16:18 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:09:59 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:10:11 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-void	null_format(t_format *format)
+void	null_format(t_format *f)
 {
-	format->flags = 0;
-	format->precision = 0;
-	format->width = NULL;
-	format->wid_pre = 0;
-	format->wid_fls = 0;
-	format->specifier = 0;
-	format->result = NULL;
-	format->print_len = -1;
-	format->help = NULL;
-	format->success = 1;
-	format->isspase = 0;
+	f->fl = 0;
+	f->pr = 0;
+	f->w = NULL;
+	f->wp = 0;
+	f->wf = 0;
+	f->sp = 0;
+	f->re = NULL;
+	f->pl = -1;
+	f->t = NULL;
+	f->su = 2;
+	f->isspase = 0;
 }
 
-void	print_format(t_format *format)
+void	print_format(t_format *f)
 {
-	printf("\n----------------------------\nflags |%c|\n", format->flags);
-	printf("precision |%c|\n", format->precision);
-	printf("width |%s|\n", format->width);
-	printf("wid_pre |%li|\n", format->wid_pre);
-	printf("wid_fls |%li|\n", format->wid_fls);
-	printf("specifier |%c|\n", format->specifier);
-	printf("result |%s|\n", format->result);
-	printf("plen |%li| =? %li\n", format->print_len, ft_strlen(format->help));
-	printf("help |%s|\n", format->help);
-	printf("success |%i|\n\n", format->success);
+	printf("\n----------------------------\nflags |%c|\n", f->fl);
+	printf("precision |%c|\n", f->pr);
+	printf("width |%s|\n", f->w);
+	printf("wid_pre |%li|\n", f->wp);
+	printf("wid_fls |%li|\n", f->wf);
+	printf("specifier |%c|\n", f->sp);
+	printf("result |%s|\n", f->re);
+	printf("plen |%li| =? %li\n", f->pl, ft_strlen(f->t));
+	printf("help |%s|\n", f->t);
+	printf("success |%i|\n\n", f->su);
+}
+
+void	check_format(t_format *f)
+{
+	if ((f->t == NULL || f->sp == 0) && f->su != 0)
+		f->su = 2;
 }
 
 void	*format_specifier(char **str, va_list *app, int *len)
 {
-	t_format	format;
+	t_format	f;
 
 	(*str)++;
-	null_format(&format);
+	null_format(&f);
 	while (**str == 32 && **str != '\0')
 	{
-		format.isspase = 1;
+		f.isspase = 1;
 		(*str)++;
 	}
 	while (ft_findchr("-01234567890*", **str) > 0)
 	{
-		if (ft_findchr("-0", **str) > 0 && format.success)
-			format.success = f_flags(str, &format);
-		if (ft_findchr("1234567890*", **str) > 0 && format.success)
-			format.success = f_width(str, app, &format, 'f');
+		if (ft_findchr("-0", **str) > 0 && f.su)
+			f.su = f_flags(str, &f);
+		if (ft_findchr("1234567890*", **str) > 0 && f.su)
+			f.su = f_width(str, app, &f, 'f');
 	}
-	if (ft_findchr(".", **str) > 0 && format.success)
-		format.success = f_precision(str, &format);
+	if (ft_findchr(".", **str) > 0 && f.su)
+		f.su = f_precision(str, &f);
 	if (ft_findchr("1234567890*", **str) > 0 &&
-			(format.success || format.success == -1))
-		format.success = f_width(str, app, &format, 'p');
-	if (ft_findchr("cspdiuxXo%", **str) > 0 && format.success)
-		format.success = f_specifier(str, app, &format);
-	//print_format(&format);
-	return (result_char(len, &format));
+			(f.su || f.su == -1))
+		f.su = f_width(str, app, &f, 'p');
+	if (ft_findchr("cspdiuxXo%", **str) > 0 && f.su)
+		f.su = f_specifier(str, app, &f);
+	check_format(&f);
+	return (result_char(len, &f, 0));
 }

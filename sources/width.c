@@ -5,51 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:21:32 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 13:30:36 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:09:13 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:09:21 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-static int	width_star(char **str, va_list *app, t_format *format, char flag)
+static int	width_star(char **str, va_list *app, t_format *f, char flag)
 {
 	int len;
 
 	len = va_arg(*app, unsigned int);
 	if (flag == 'p')
-		format->wid_pre = len;
+		f->wp = len;
 	else if (flag == 'f')
-		format->wid_fls = len;
+		f->wf = len;
 	else
 		return (0);
 	(*str)++;
 	return (1);
 }
 
-int			f_width(char **str, va_list *app, t_format *format, char flag)
+int			f_width(char **str, va_list *app, t_format *f, char flag)
 {
 	int i;
 
 	i = 0;
-	if (format->print_len == -1)
-		format->print_len = 0;
+	if (f->pl == -1)
+		f->pl = 0;
 	if (**str == '*')
-		return (width_star(str, app, format, flag));
+		return (width_star(str, app, f, flag));
 	while (**str > 47 && **str < 58)
 	{
-		format->width = (char*)ft_strjoin_lens(format->width, *str, i, 1);
+		f->w = (char*)ft_strjoin_lens(f->w, *str, i, 1);
 		i++;
 		(*str)++;
 	}
-	if (format->width != NULL)
+	if (f->w != NULL)
 	{
 		if (flag == 'p')
-			format->wid_pre = ft_atoi(format->width);
+			f->wp = ft_atoi(f->w);
 		if (flag == 'f')
-			format->wid_fls = ft_atoi(format->width);
-		free(format->width);
-		format->width = NULL;
+			f->wf = ft_atoi(f->w);
+		free(f->w);
+		f->w = NULL;
 		return (1);
 	}
 	return (0);

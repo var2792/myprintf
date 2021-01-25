@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:11:39 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/22 16:26:42 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:03:22 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:03:46 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ void	format_devide(unsigned char **res, char **str, va_list *app, int *len)
 	int				len_t;
 	int				len_st;
 
-	//printf("len is %i<---\n",  *len);
 	len_st = *len;
 	temp = (unsigned char*)format_specifier(str, app, len);
-	//printf("len is %i<---\n",  *len - len_st);
 	len_t = (temp[0] == 0 && *len == len_st) ? 1 : *len - len_st;
-	//printf("len is %i<---\n",  len_t);
 	if (*len > 0)
 		*res = (unsigned char*)ft_strjoin_lens(*res, temp, len_st, len_t);
 	*len = ((temp[0] == 0) && (ft_strlen(temp) > 0)) ? *len + 1 : *len;
@@ -48,13 +45,10 @@ int		ft_printf(const char *orig, ...)
 			format_devide(&res, &str, &ap, &len);
 		else
 		{
-			//printf("len is %i<---\n",  len);
 			res = (unsigned char*)ft_strjoin_lens(res, str, len, 1);
 			str++;
 			len++;
 		}
-		//printf("---------->*str {%c}<---\n",  *str);
-		//printf("res is {%s}<---\n", res);
 	}
 	va_end(ap);
 	if (len > 0)

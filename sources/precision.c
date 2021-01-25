@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:21:20 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/17 13:43:35 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:08:50 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:08:55 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-int	f_precision(char **str, t_format *format)
+int	f_precision(char **str, t_format *f)
 {
-	format->precision = **str;
-	if (format->print_len == -1)
-		format->print_len = 0;
-	if (format->precision == '.')
+	f->pr = **str;
+	if (f->pl == -1)
+		f->pl = 0;
+	if (f->pr == '.')
 	{
 		(*str)++;
 		return (1);

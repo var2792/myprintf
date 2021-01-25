@@ -5,29 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarneld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 13:20:44 by tarneld           #+#    #+#             */
-/*   Updated: 2020/11/20 14:15:35 by tarneld          ###   ########.fr       */
+/*   Created: 2020/11/22 17:08:12 by tarneld           #+#    #+#             */
+/*   Updated: 2020/11/22 17:08:17 by tarneld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/format_specifier.h"
 
-int		f_flags(char **str, t_format *format)
+int		f_flags(char **str, t_format *f)
 {
-	format->flags = **str;
-	if (format->print_len == -1)
-		format->print_len = 0;
-	if (format->flags == '-')
+	f->fl = **str;
+	if (f->pl == -1)
+		f->pl = 0;
+	if (f->fl == '-')
 	{
 		(*str)++;
 		return (1);
 	}
-	if (format->flags == '0')
+	if (f->fl == '0')
 	{
 		(*str)++;
 		if (**str == '-')
 		{
-			format->flags = '-';
+			f->fl = '-';
 			(*str)++;
 		}
 		return (1);
